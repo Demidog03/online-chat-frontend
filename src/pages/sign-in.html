@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign in - Online Chat</title>
+    <link rel="stylesheet" href="../main.scss">
+    <script type="module" src="../main.ts"></script>
+
+    <link rel="stylesheet" href="../modules/signin/signin.scss">
+    <script type="module" src="../modules/signin/signin.ts"></script>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">Online chat</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    </ul>
+                    <a href="/sign-in"><button class="btn btn-outline-success" type="submit">Sign in</button></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container-lg">
+        <form id="signInForm" class="sign-in-form">
+            <fieldset>
+                <legend class="heading">Sign in</legend>
+                <div class="mb-3">
+                    <label for="emailInput" class="form-label">Email address</label>
+                    <input id="emailInput" type="email" class="form-control" aria-describedby="emailHelp">
+                    <div id="emailValidationFeedback" class="invalid-feedback">
+
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordInput" class="form-label">Password</label>
+                    <input id="passwordInput" type="password" class="form-control" >
+                    <div id="passwordValidationFeedback" class="invalid-feedback">
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </fieldset>
+            <p><a class="link-opacity-75-hover" href="/sign-up">Do not have an account? Register</a></p>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>
