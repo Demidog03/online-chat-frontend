@@ -16,13 +16,17 @@ const emailValidationFeedbackEl: HTMLDivElement | null = document.querySelector(
 const passwordValidationFeedbackEl: HTMLDivElement | null = document.querySelector('#passwordValidationFeedback')
 const confirmPasswordValidationFeedbackEl: HTMLDivElement | null = document.querySelector('#confirmPasswordValidationFeedback')
 
+// SERVICES
 const toasterApiService = new ToastifyService(3000)
 const localStorageService = new LocalStorageService()
-const usersApiService = new UsersApiService(toasterApiService)
+const usersApiService = new UsersApiService(toasterApiService, localStorageService)
 
+// PUBLIC PAGE GUARD
 const publicPageGuardService = new PublicPageGuardService(usersApiService,localStorageService)
 publicPageGuardService.init()
 
+
+// SIGN UP FORM SERVICE
 if (emailInput && fullnameInput && confirmPasswordInput && passwordInput && signUpForm && fullnameValidationFeedbackEl && confirmPasswordValidationFeedbackEl && emailValidationFeedbackEl && passwordValidationFeedbackEl) {
     const signUpFormService = new SignUpFormService(signUpForm, fullnameInput, emailInput, passwordInput, confirmPasswordInput, fullnameValidationFeedbackEl, emailValidationFeedbackEl, passwordValidationFeedbackEl, confirmPasswordValidationFeedbackEl, usersApiService)
     void signUpFormService.addSubmitEvent()

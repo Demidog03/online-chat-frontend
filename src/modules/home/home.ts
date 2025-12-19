@@ -4,8 +4,8 @@ import UsersApiService from "../users/service/users-api.service";
 import LocalStorageService from "../../shared/services/storage.service";
 
 const toasterApiService = new ToastifyService(3000)
-const usersApiService = new UsersApiService(toasterApiService)
 const localStorageService = new LocalStorageService()
+const usersApiService = new UsersApiService(toasterApiService, localStorageService)
 
 const authPageGuardService = new AuthPageGuardService(usersApiService, localStorageService);
 authPageGuardService.init()

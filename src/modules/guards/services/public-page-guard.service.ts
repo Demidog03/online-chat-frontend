@@ -17,14 +17,15 @@ export default class PublicPageGuardService implements PublicPageGuardServiceInt
         if (data) {
             location.href = '/profile'
         }
+        else {
+            // ToDo: Позже подумать убирать или нет
+            this.storageService.removeFromStorage('accessToken')
+        }
     }
 
     private async getProfile() {
         try {
-            const accessToken = this.storageService.getFromStorage('accessToken');
-            if (accessToken) {
-                return await this.usersApiService.profile(accessToken)
-            }
+            return await this.usersApiService.profile()
         }
         catch (error: Error | unknown) {
             console.error(error)

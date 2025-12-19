@@ -10,13 +10,16 @@ const signInForm: HTMLFormElement | null = document.querySelector('#signInForm')
 const emailValidationFeedbackEl: HTMLDivElement | null = document.querySelector('#emailValidationFeedback')
 const passwordValidationFeedbackEl: HTMLDivElement | null = document.querySelector('#passwordValidationFeedback')
 
+// SERVICES
 const toasterApiService = new ToastifyService(3000)
 const localStorageService = new LocalStorageService()
-const usersApiService = new UsersApiService(toasterApiService)
+const usersApiService = new UsersApiService(toasterApiService, localStorageService)
 
+// PUBLIC PAGE GUARD
 const publicPageGuardService = new PublicPageGuardService(usersApiService,localStorageService)
 publicPageGuardService.init()
 
+// SIGN IN FORM SERVICE
 if (emailInput && passwordInput && signInForm && emailValidationFeedbackEl && passwordValidationFeedbackEl) {
     const signinFormService = new SigninFormService(signInForm, emailInput, passwordInput, emailValidationFeedbackEl, passwordValidationFeedbackEl, localStorageService, usersApiService)
 
