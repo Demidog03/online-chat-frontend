@@ -5,9 +5,9 @@ import LocalStorageService from "../../shared/services/storage.service";
 import ProfileFormService from "./services/profile-form.service";
 
 // SERVICES
-const toasterApiService = new ToastifyService(3000)
+const toasterService = new ToastifyService(3000)
 const localStorageService = new LocalStorageService()
-const usersApiService = new UsersApiService(toasterApiService, localStorageService)
+const usersApiService = new UsersApiService(toasterService, localStorageService)
 
 // AUTH PAGE GUARD
 const authPageGuardService = new AuthPageGuardService(usersApiService, localStorageService);
@@ -16,8 +16,12 @@ authPageGuardService.init()
 // PROFILE FORM SERVICE
 const fullnameInput: HTMLInputElement | null = document.querySelector('#fullnameInput')
 const emailInput: HTMLInputElement | null = document.querySelector('#emailInput')
+const editButton: HTMLButtonElement | null = document.querySelector('#editButton')
+const cancelButton: HTMLButtonElement | null = document.querySelector('#cancelButton')
+const submitButton: HTMLButtonElement | null = document.querySelector('#submitButton')
+const fullnameInputValidationFeedback: HTMLDivElement | null = document.querySelector('#fullnameInputValidationFeedback')
 
-if (fullnameInput && emailInput && usersApiService) {
-    const profileFormService = new ProfileFormService(fullnameInput, emailInput, usersApiService)
+if (fullnameInput && emailInput && usersApiService && editButton && cancelButton && submitButton && fullnameInputValidationFeedback) {
+    const profileFormService = new ProfileFormService(fullnameInput, emailInput, editButton, cancelButton, submitButton, fullnameInputValidationFeedback, usersApiService, toasterService)
     profileFormService.init()
 }

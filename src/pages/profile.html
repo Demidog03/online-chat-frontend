@@ -26,6 +26,9 @@
                     <label for="fullnameInput" class="col-sm-2 col-form-label">Fullname</label>
                     <div class="col-sm-10">
                         <input readonly id="fullnameInput" type="text" class="form-control" aria-describedby="FullnameHelp">
+                        <div id="fullnameInputValidationFeedback" class="invalid-feedback">
+
+                        </div>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -33,6 +36,11 @@
                     <div class="col-sm-10">
                         <input readonly id="emailInput" type="email" class="form-control" aria-describedby="emailHelp">
                     </div>
+                </div>
+                <div class="mb-3 row profile-form-buttons">
+                    <button id="editButton" type="button" class="btn btn-outline-warning">Edit</button>
+                    <button id="cancelButton" type="button" class="btn btn-outline-secondary hidden">Cancel</button>
+                    <button id="submitButton" type="button" class="btn btn-outline-success hidden">Submit</button>
                 </div>
             </fieldset>
         </form>
