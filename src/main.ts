@@ -1,9 +1,11 @@
 import 'bootstrap/dist/js/bootstrap.min.js'
 import './declare.d.ts'
+import './shared/services/user-context.instance'
 import NavbarComponent from "./modules/navbar/ui/navbar.component";
 import UsersApiService from "./modules/users/service/users-api.service";
 import LocalStorageService from "./shared/services/storage.service";
 import ToastifyService from "./shared/services/toaster.service";
+import {userContextService} from "./shared/services/user-context.instance";
 
 // SERVICES
 const toasterApiService = new ToastifyService(3000)
@@ -12,5 +14,6 @@ const usersApiService = new UsersApiService(toasterApiService, localStorageServi
 
 // NAVBAR
 const header: HTMLElement | null = document.querySelector('header')
-const navbarComponent = new NavbarComponent(header, usersApiService, localStorageService)
+const navbarComponent = new NavbarComponent(header, usersApiService, localStorageService, userContextService)
 navbarComponent.render()
+

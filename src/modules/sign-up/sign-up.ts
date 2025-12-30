@@ -3,6 +3,7 @@ import UsersApiService from "../users/service/users-api.service";
 import ToastifyService from "../../shared/services/toaster.service";
 import PublicPageGuardService from "../guards/services/public-page-guard.service";
 import LocalStorageService from "../../shared/services/storage.service";
+import {userContextService} from "../../shared/services/user-context.instance";
 
 const signUpForm: HTMLFormElement | null = document.querySelector('#signUpForm')
 
@@ -22,7 +23,7 @@ const localStorageService = new LocalStorageService()
 const usersApiService = new UsersApiService(toasterApiService, localStorageService)
 
 // PUBLIC PAGE GUARD
-const publicPageGuardService = new PublicPageGuardService(usersApiService,localStorageService)
+const publicPageGuardService = new PublicPageGuardService(userContextService,localStorageService)
 publicPageGuardService.init()
 
 

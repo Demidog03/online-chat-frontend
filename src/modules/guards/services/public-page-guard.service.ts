@@ -1,5 +1,5 @@
-import {UsersApiServiceInterface} from "../../users/service/users-api.types";
 import {StorageServiceInterface} from "../../../shared/services/storage.service";
+import {UserContextServiceInterface} from "../../../shared/services/user-context.service";
 
 export interface PublicPageGuardServiceInterface {
     init(): void;
@@ -7,28 +7,19 @@ export interface PublicPageGuardServiceInterface {
 
 export default class PublicPageGuardService implements PublicPageGuardServiceInterface {
     constructor(
-        private usersApiService: UsersApiServiceInterface,
+        private userContextService: UserContextServiceInterface,
         private storageService: StorageServiceInterface,
     ) {}
 
     async init() {
-        const data = await this.getProfile()
+        await this.userContextService.fetchUser()
 
-        if (data) {
+        if (this.userContextService.isAuthenticated()) {
             location.href = '/profile'
         }
         else {
             // ToDo: Позже подумать убирать или нет
             this.storageService.removeFromStorage('accessToken')
-        }
-    }
-
-    private async getProfile() {
-        try {
-            return await this.usersApiService.profile()
-        }
-        catch (error: Error | unknown) {
-            console.error(error)
         }
     }
 }

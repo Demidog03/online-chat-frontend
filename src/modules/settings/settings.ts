@@ -1,11 +1,8 @@
 import AuthPageGuardService from "../guards/services/auth-page-guard.service";
-import ToastifyService from "../../shared/services/toaster.service";
-import UsersApiService from "../users/service/users-api.service";
 import LocalStorageService from "../../shared/services/storage.service";
+import {userContextService} from "../../shared/services/user-context.instance";
 
-const toasterApiService = new ToastifyService(3000)
 const localStorageService = new LocalStorageService()
-const usersApiService = new UsersApiService(toasterApiService, localStorageService)
 
-const authPageGuardService = new AuthPageGuardService(usersApiService, localStorageService);
+const authPageGuardService = new AuthPageGuardService(userContextService, localStorageService);
 authPageGuardService.init()
