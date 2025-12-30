@@ -184,7 +184,8 @@ export default class NavbarComponent implements NavbarComponentInterface{
         return dropdownEl
     }
 
-    private logout() {
+    private async logout() {
+        await this.userApiService.logout()
         this.storageService.removeFromStorage('accessToken')
         this.storageService.removeFromStorage('userProfile')
         window.location.reload()

@@ -1,6 +1,6 @@
 import {
     UsersApiServiceInterface,
-    UsersLoginResponse,
+    UsersLoginResponse, UsersLogoutResponse,
     UsersProfileResponse,
     UsersRegisterResponse, UsersUpdateProfileResponse
 } from "./users-api.types";
@@ -91,6 +91,31 @@ export default class UsersApiService implements UsersApiServiceInterface {
             else {
                 console.error(error)
                 this.toasterService.showError('Error')
+            }
+        }
+    }
+
+    async logout(): Promise<UsersLogoutResponse | undefined> {
+        try {
+            const accessToken = this.storageService.getFromStorage('accessToken')
+            if (accessToken) {
+                const response = await axios.post<UsersLogoutResponse>(
+                    'http://localhost:3000/users/logout',
+                    {},
+                    {
+                        headers: {
+                            Authorization: `Bearer ${accessToken}`
+                        },
+                    }
+                )
+                return response.data
+            }
+        }
+        catch (error) {
+            if (error instanceof AxiosError) {
+            }
+            else {
+                console.error(error)
             }
         }
     }
