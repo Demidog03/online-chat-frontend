@@ -1,4 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.min.js'
+import "bootstrap-icons/font/bootstrap-icons.css";
 import './declare.d.ts'
 import './shared/services/user-context.instance'
 import NavbarComponent from "./modules/navbar/ui/navbar.component";
